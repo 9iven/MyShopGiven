@@ -13,7 +13,7 @@ pluginManagement {
 
     plugins {
         //safe args
-        id("androidx.navigation.safeargs.kotlin") version "2.9.4"
+        id("androidx.navigation.safeargs.kotlin") version "2.10.2"
     }
 
 }
