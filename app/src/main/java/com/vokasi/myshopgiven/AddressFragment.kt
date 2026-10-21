@@ -24,10 +24,8 @@ class AddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            // 1. Disesuaikan dengan package project kamu (R.array.provinces)
             val provinces = resources.getStringArray(R.array.provinces)
 
-            // 2. Ditambahkan android. pada android.R.layout.simple_spinner_item
             val adapterProvinces = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_item,
@@ -37,7 +35,10 @@ class AddressFragment : Fragment() {
             spinnerProvinces.adapter = adapterProvinces
 
             btnDone.setOnClickListener {
-                findNavController().navigateUp()
+                findNavController().apply {
+                    previousBackStackEntry
+                        ?.savedStateHandle?.set("address", spinnerProvinces.selectedItem.toString())
+                }.navigateUp()
             }
         }
     }
